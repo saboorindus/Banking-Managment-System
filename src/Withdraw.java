@@ -7,7 +7,13 @@ public class Withdraw {
 
     private static Withdraw instance = null;
     boolean accountFound = false;
+
+    int Balance;
+
+    int newBalance;
     Scanner scanner = new Scanner(System.in);
+
+
 
 
     private Withdraw(){}
@@ -37,28 +43,37 @@ public class Withdraw {
         }
     }
 
-    public void WithDrawNow(){
-        Deposit deposit = Deposit.getInstance();
-        int Balance = deposit.getBalance();
-        System.out.println(deposit.getBalance());
-        System.out.println("Enter Amount to Withdraw");
-        int newBalance = scanner.nextInt();
+    public void WithDrawNow() {
+        boolean flag = false;
 
-        boolean perfect = false;
-        while (!perfect) {
-            if (newBalance>99){
-                if (newBalance<=Balance){
-                    Balance = Balance - newBalance;
-                    System.out.println("Withdraw Complete of: "+newBalance);
-                    System.out.println("Your New Balance is: "+Balance);
-                    perfect = true;
+        while (!flag) {
+            Deposit deposit = Deposit.getInstance();
+            Balance = deposit.getBalance();
+            System.out.println("You Current Balance is: " + deposit.getBalance());
+            System.out.println("Enter Amount to Withdraw");
+            newBalance = scanner.nextInt();
+
+
+            boolean perfect = false;
+            while (!perfect) {
+                if (newBalance > 99) {
+                    if (newBalance <= Balance) {
+                        Balance = Balance - newBalance;
+                        System.out.println("Withdraw Complete of: " + newBalance);
+                        System.out.println("Your New Balance is: " + Balance);
+                        deposit.setBalance(Balance);
+                        perfect = true;
+                        flag = true;
+                    } else {
+                        System.out.println("Not Enough Balance");
+                        break;
+                    }
+
                 } else {
-                    System.out.println("Not Enough Balance \nYour Current Balance is: "+deposit.getBalance());
-                 }
-            } else {
-                System.out.println("Balance must be greater than 99");
-             }
-
+                    System.out.println("Balance must be greater than 99");
+                    break;
+                }
+            }
         }
     }
 
@@ -69,6 +84,7 @@ public class Withdraw {
         return instance;
 
     }
+
 }
 
 

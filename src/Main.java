@@ -5,9 +5,10 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         boolean exit = false;
+        System.out.println("\nWelcome to banking Systemn\n");
 
         while (!exit){
-            System.out.println("Welcome to banking System");
+
             System.out.println("Select any option from below");
             System.out.println("1) Create Account");
             System.out.println("2) Deposit");
@@ -18,25 +19,25 @@ public class Main {
             Scanner scanner = new Scanner(System.in);
             int Option = scanner.nextInt();
 
-            switch (Option){
-                case 1:
+            switch (Option) {
+                case 1 -> {
                     CreateAccount createAccount = CreateAccount.getInstance();
-                    createAccount.createaccount();
-                    break;
-                case 2:
+                    createAccount.CreateAcc();
+                }
+                case 2 -> {
                     Deposit deposit = Deposit.getInstance();
                     deposit.deposit();
                     deposit.DepositNow();
-                    break;
-                case 3:
+                }
+                case 3 -> {
                     Withdraw withdraw = Withdraw.getInstance();
                     withdraw.withdraw();
                     withdraw.WithDrawNow();
-                    break;
-                case 4:
+                }
+                case 4 -> {
                     exit = true;
                     scanner.close();
-                    break;
+                }
             }
 
         }

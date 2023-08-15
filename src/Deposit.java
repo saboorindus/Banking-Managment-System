@@ -7,14 +7,16 @@ import java.io.BufferedReader;
 public class Deposit{
 
     private static Deposit instance = null;
+
+    public void setBalance(int balance) {
+        Balance = balance;
+    }
+
     private int Balance = 0;
     boolean accountFound = false;
-
-
     Scanner scanner = new Scanner(System.in);
 
     private Deposit(){
-
     }
     public void deposit() {
         while (!accountFound){
@@ -43,7 +45,6 @@ public class Deposit{
     }
 
     public void DepositNow(){
-        CreateAccount createAccount =CreateAccount.getInstance();
         boolean perfect = false;
         while (!perfect) {
             System.out.println("Enter Amount to deposit");
@@ -56,7 +57,6 @@ public class Deposit{
             } else {
                 System.out.println("Balance must be greater than 100");
             }
-
         }
     }
 
@@ -70,5 +70,4 @@ public class Deposit{
         }
         return instance;
      }
-
 }
