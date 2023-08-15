@@ -3,16 +3,15 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.io.FileReader;
 import java.io.BufferedReader;
-public class Withdraw extends Deposit{
+public class Withdraw {
 
-
+    private static Withdraw instance = null;
     boolean accountFound = false;
     Scanner scanner = new Scanner(System.in);
 
 
-
-
-    public void Withdraw(){
+    private Withdraw(){}
+    public void withdraw(){
         while (!accountFound) {
             System.out.println("Enter you account number");
             int newAccountNumber = scanner.nextInt();
@@ -39,32 +38,36 @@ public class Withdraw extends Deposit{
     }
 
     public void WithDrawNow(){
-        int Balance = 0;
-        Deposit deposit = new Deposit();
+        Deposit deposit = Deposit.getInstance();
+        int Balance = deposit.getBalance();
         System.out.println(deposit.getBalance());
         System.out.println("Enter Amount to Withdraw");
         int newBalance = scanner.nextInt();
 
         boolean perfect = false;
         while (!perfect) {
-            newBalance = scanner.nextInt();
-
             if (newBalance>99){
                 if (newBalance<=Balance){
                     Balance = Balance - newBalance;
                     System.out.println("Withdraw Complete of: "+newBalance);
                     System.out.println("Your New Balance is: "+Balance);
                     perfect = true;
-                }
-                else {
+                } else {
                     System.out.println("Not Enough Balance \nYour Current Balance is: "+deposit.getBalance());
-                }
-            }
-            else {
+                 }
+            } else {
                 System.out.println("Balance must be greater than 99");
-            }
-            System.out.println("Try Agian");
+             }
+
         }
+    }
+
+    public static Withdraw getInstance() {
+        if (instance == null) {
+            instance = new Withdraw();
+        }
+        return instance;
+
     }
 }
 

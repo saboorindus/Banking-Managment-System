@@ -20,24 +20,26 @@ public class Main {
 
             switch (Option){
                 case 1:
-                    CreateAccount createAccount = new CreateAccount();
+                    CreateAccount createAccount = CreateAccount.getInstance();
                     createAccount.createaccount();
                     break;
                 case 2:
-                    Deposit deposit = new Deposit();
+                    Deposit deposit = Deposit.getInstance();
                     deposit.deposit();
                     deposit.DepositNow();
-                    System.out.println("Hello: "+deposit.getBalance());
                     break;
                 case 3:
-                    Withdraw withdraw = new Withdraw();
-                    withdraw.Withdraw();
+                    Withdraw withdraw = Withdraw.getInstance();
+                    withdraw.withdraw();
                     withdraw.WithDrawNow();
                     break;
                 case 4:
                     exit = true;
+                    scanner.close();
                     break;
             }
+
         }
     }
+
 }

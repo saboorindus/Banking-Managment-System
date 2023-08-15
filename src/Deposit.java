@@ -4,13 +4,18 @@ import java.util.Scanner;
 import java.io.FileReader;
 import java.io.BufferedReader;
 
-public class Deposit extends CreateAccount{
+public class Deposit{
 
+    private static Deposit instance = null;
     private int Balance = 0;
     boolean accountFound = false;
 
 
     Scanner scanner = new Scanner(System.in);
+
+    private Deposit(){
+
+    }
     public void deposit() {
         while (!accountFound){
             System.out.println("Enter you account number");
@@ -37,8 +42,8 @@ public class Deposit extends CreateAccount{
         }
     }
 
-    public int DepositNow(){
-        CreateAccount createAccount = new CreateAccount();
+    public void DepositNow(){
+        CreateAccount createAccount =CreateAccount.getInstance();
         boolean perfect = false;
         while (!perfect) {
             System.out.println("Enter Amount to deposit");
@@ -51,12 +56,19 @@ public class Deposit extends CreateAccount{
             } else {
                 System.out.println("Balance must be greater than 100");
             }
+
         }
-        return Balance;
     }
 
      public int getBalance(){
          return Balance;
+     }
+
+     public static Deposit getInstance(){
+        if(instance == null){
+            instance = new Deposit();
+        }
+        return instance;
      }
 
 }

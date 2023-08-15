@@ -5,10 +5,13 @@ import java.io.FileWriter;
 import java.io.BufferedWriter;
 public class CreateAccount {
 
+    private static CreateAccount instance = null;
     private String User_Name;
     private String password;
     private int Account_Number;
 
+    private CreateAccount(){
+    }
 
 
     public void createaccount() throws IOException{
@@ -38,5 +41,16 @@ public class CreateAccount {
         System.out.println("Password: "+password);
         System.out.println("Account Number: "+Account_Number);
     }
+
+
+    public static CreateAccount getInstance(){
+        {
+            if (instance==null){
+                instance = new CreateAccount();
+            }
+        }
+        return instance;
+    }
+
 
 }
